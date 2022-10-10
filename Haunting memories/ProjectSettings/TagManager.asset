@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - CinemachineTarget
+  - projectile
+  - FxTemporaire
+  - key
+  - enemy
+  - player
   layers:
   - Default
   - TransparentFX
@@ -14,7 +19,7 @@ TagManager:
   - UI
   - whatIsPlayer
   - whatIsGround
-  - 
+  - obstacle
   - 
   - 
   - 
