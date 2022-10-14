@@ -48,9 +48,11 @@ public class EnemyAI : MonoBehaviour
         if (playerInSight)
         {
             navMeshAgent.destination = player.position; // move to object}
+            navMeshAgent.speed = 2f;
         }
         else if (!playerInSight)
         {
+            navMeshAgent.speed = 0.8f;
             if (!walkPointSet) SearchWalkPoint();
 
             if (walkPointSet)
@@ -87,12 +89,12 @@ public class EnemyAI : MonoBehaviour
                 walkPointSet = true;
         }
 
-    /*private void OnDrawGizmosSelected()
+    private void OnDrawGizmosSelected()
     {
-        
+
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, sightRange);
-    }*/
+        Gizmos.DrawWireSphere(walkPoint, 2);
+    }
 
     private IEnumerator FOVRoutine() // Only looks for player 5x per second to reduce load on computer
     {
