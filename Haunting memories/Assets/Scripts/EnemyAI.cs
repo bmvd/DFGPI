@@ -17,6 +17,10 @@ public class EnemyAI : MonoBehaviour
 
     public LayerMask whatIsGround, whatIsPlayer, whatIsObstacle;
 
+    private float time;
+    [Range(1, 100)]
+    public int maxTime = 1;
+
 
     //Patroling
     public Vector3 walkPoint;
@@ -53,7 +57,11 @@ public class EnemyAI : MonoBehaviour
         else if (!playerInSight)
         {
             navMeshAgent.speed = 0.6f;
-            if (!walkPointSet) SearchWalkPoint();
+            if (!walkPointSet)
+            {
+                time = Time.time;
+                SearchWalkPoint();
+            }
 
             if (walkPointSet)
                 navMeshAgent.SetDestination(walkPoint);
@@ -63,6 +71,11 @@ public class EnemyAI : MonoBehaviour
             //Walkpoint Reached
             if (distanceToWalkPoint.magnitude < 1f)
                 walkPointSet = false;
+
+            if (Time.time > time + maxTime)
+            {
+                walkPointSet = false;
+            }
 
         }
 

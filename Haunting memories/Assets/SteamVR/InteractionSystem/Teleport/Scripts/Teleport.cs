@@ -112,6 +112,10 @@ namespace Valve.VR.InteractionSystem
 
 		SteamVR_Events.Action chaperoneInfoInitializedAction;
 
+		// New variables
+		private float teleportStart = 0f;
+		private float teleportCooldown = 1.5f;
+
 		// Events
 
 		public static SteamVR_Events.Event< float > ChangeScene = new SteamVR_Events.Event< float >();
@@ -188,7 +192,7 @@ namespace Valve.VR.InteractionSystem
 
 			CheckForSpawnPoint();
 
-			Invoke( "ShowTeleportHint", 5.0f );
+			//Invoke( "ShowTeleportHint", 5.0f );
 		}
 
 
@@ -248,7 +252,11 @@ namespace Valve.VR.InteractionSystem
 					{
 						if ( pointerHand == hand ) //This is the pointer hand
 						{
-							TryTeleportPlayer();
+							if(Time.time > teleportStart + teleportCooldown)
+                            {
+								TryTeleportPlayer();
+								teleportStart = Time.time;
+							}
 						}
 					}
 				}
@@ -269,7 +277,10 @@ namespace Valve.VR.InteractionSystem
 				if ( !visible && newPointerHand != null )
 				{
 					//Begin showing the pointer
-					ShowPointer( newPointerHand, oldPointerHand );
+					if (Time.time > teleportStart + teleportCooldown)
+					{
+						ShowPointer(newPointerHand, oldPointerHand);
+					}
 				}
 				else if ( visible )
 				{

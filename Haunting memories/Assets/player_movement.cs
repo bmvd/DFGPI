@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class player_movement2 : MonoBehaviour
+public class player_movement : MonoBehaviour
 {
     public GameObject scare;
     public GameObject player;
