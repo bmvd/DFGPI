@@ -102,6 +102,9 @@ namespace Valve.VR.InteractionSystem
 
             if (buttonDown && onButtonDown != null)
                 onButtonDown.Invoke(lastHoveredHand);
+                //onButtonDown(lastHoveredHand, gameObject.name);
+                //Debug.Log(gameObject.name);
+                //Debug.Log(lastHoveredHand);
             if (buttonUp && onButtonUp != null)
                 onButtonUp.Invoke(lastHoveredHand);
             if (isEngaged && onButtonIsPressed != null)

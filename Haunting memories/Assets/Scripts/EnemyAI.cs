@@ -52,11 +52,11 @@ public class EnemyAI : MonoBehaviour
         if (playerInSight)
         {
             navMeshAgent.destination = player.position; // move to object}
-            navMeshAgent.speed = 1.2f;
+            navMeshAgent.speed = 0.12f;
         }
         else if (!playerInSight)
         {
-            navMeshAgent.speed = 0.6f;
+            navMeshAgent.speed = 0.06f;
             if (!walkPointSet)
             {
                 time = Time.time;
