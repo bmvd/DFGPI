@@ -6,24 +6,27 @@ using UnityEngine.SceneManagement;
 public class random_black_out : MonoBehaviour
 {
     public GameObject Lights;
-  
+    public GameObject lights_task;
+    public GameObject player;
+    public int RandomNum;
+
     // Start is called before the first frame update
     void Start()
     {
         Lights.SetActive(true);
-        
     }
 
     // Update is called once per frame
     void Update()
     {
-        int RandomNum = Random.Range(1, 2000);
+        RandomNum = Random.Range(1, 700);
         //Debug.Log(RandomNum);
-        if (RandomNum == -1)
+        if (RandomNum == 1)
         {
+            Debug.Log("player disabled");
             Lights.SetActive(false);
-            
-            SceneManager.LoadScene(1);
+            player.SetActive(false);
+            lights_task.SetActive(true);
         }
     }
 }

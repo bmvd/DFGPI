@@ -4,20 +4,73 @@ using UnityEngine;
 
 public class Switch : MonoBehaviour
 {
-    public GameObject player;
-    public GameObject Lights;
-    public int RandomNum;
-    public GameObject lightSwitch;
+    public GameObject up;
+    public GameObject on;
+    public bool isOn;
+    public bool isUp;
+    private bool activeAgain;
 
-    // Update is called once per frame
-    private void OnTriggerEnter(Collider other)
+    // Start is called before the first frame update
+    void Start()
     {
-        if (other.CompareTag("Player"))
+        int OnOff = Random.Range(0, 2);
+        Debug.Log(OnOff);
+        if (OnOff == 1)
         {
-            Debug.Log("on");
-            Lights.SetActive(true);
-            RandomNum = 2;
-            lightSwitch.SetActive(false);
+            isUp = false;
+            isOn = true;
+        }
+        else
+        {
+            isUp = true;
+            isOn = false;
+        }
+        on.SetActive(isOn);
+        up.SetActive(isUp);
+        if (isOn)
+        {
+            MainScript.Instance.SwitchChange(1);
+        }
+        activeAgain = true;
+    }
+    void Update()
+    {
+        if (gameObject.activeSelf && activeAgain)
+        {
+            int OnOff = Random.Range(0, 2);
+            Debug.Log(OnOff);
+            if (OnOff == 1)
+            {
+                isUp = false;
+                isOn = true;
+            }
+            else
+            {
+                isUp = true;
+                isOn = false;
+            }
+            activeAgain = false;
+        }
+        else if (!gameObject.activeSelf)
+        {
+            activeAgain = true;
+        }
+    }
+
+
+    private void OnMouseUp()
+    {
+        isUp = !isUp;
+        isOn = !isOn;
+        on.SetActive(isOn);
+        up.SetActive(isUp); 
+        if (isOn)
+        {
+            MainScript.Instance.SwitchChange(1);
+        }
+        else
+        {
+            MainScript.Instance.SwitchChange(-1);
         }
     }
 }
