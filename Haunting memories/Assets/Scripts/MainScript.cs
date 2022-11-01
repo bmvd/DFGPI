@@ -19,11 +19,13 @@ public class MainScript : MonoBehaviour
     public void SwitchChange(int points)
     {
         onCount = onCount + points;
+        Debug.Log(onCount);
         if (onCount == Count)
         {
             Win.SetActive(false);
             player.SetActive(true);
             light.SetActive(true);
+            onCount = 0;
         }
     }
 }

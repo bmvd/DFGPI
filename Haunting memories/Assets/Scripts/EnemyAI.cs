@@ -56,7 +56,7 @@ public class EnemyAI : MonoBehaviour
         }
         else if (!playerInSight)
         {
-            navMeshAgent.speed = 0.06f;
+            navMeshAgent.speed = 0.6f;
             if (!walkPointSet)
             {
                 time = Time.time;

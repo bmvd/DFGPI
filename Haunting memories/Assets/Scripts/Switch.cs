@@ -8,13 +8,24 @@ public class Switch : MonoBehaviour
     public GameObject on;
     public bool isOn;
     public bool isUp;
-    private bool activeAgain;
+    private MainScript mainScript;
 
     // Start is called before the first frame update
     void Start()
     {
+        mainScript = MainScript.Instance;
+        mainScript.SwitchChange(0);
+    }
+
+    void OnEnable()
+    {
+        Invoke("setSwitch", 0);
+    }
+
+    void setSwitch()
+    {
         int OnOff = Random.Range(0, 2);
-        Debug.Log(OnOff);
+        //Debug.Log(OnOff);
         if (OnOff == 1)
         {
             isUp = false;
@@ -31,32 +42,7 @@ public class Switch : MonoBehaviour
         {
             MainScript.Instance.SwitchChange(1);
         }
-        activeAgain = true;
     }
-    void Update()
-    {
-        if (gameObject.activeSelf && activeAgain)
-        {
-            int OnOff = Random.Range(0, 2);
-            Debug.Log(OnOff);
-            if (OnOff == 1)
-            {
-                isUp = false;
-                isOn = true;
-            }
-            else
-            {
-                isUp = true;
-                isOn = false;
-            }
-            activeAgain = false;
-        }
-        else if (!gameObject.activeSelf)
-        {
-            activeAgain = true;
-        }
-    }
-
 
     private void OnMouseUp()
     {
