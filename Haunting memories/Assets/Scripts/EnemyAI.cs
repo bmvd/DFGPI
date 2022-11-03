@@ -52,11 +52,11 @@ public class EnemyAI : MonoBehaviour
         if (playerInSight)
         {
             navMeshAgent.destination = player.position; // move to object}
-            navMeshAgent.speed = 0.12f;
+            navMeshAgent.speed = 0.5f;
         }
         else if (!playerInSight)
         {
-            navMeshAgent.speed = 0.6f;
+            navMeshAgent.speed = 0.3f;
             if (!walkPointSet)
             {
                 time = Time.time;
@@ -92,15 +92,18 @@ public class EnemyAI : MonoBehaviour
 
 
     private void SearchWalkPoint()
+    {
+        float randomZ = Random.Range(-walkPointRange, walkPointRange);
+        float randomX = Random.Range(-walkPointRange, walkPointRange);
+
+        walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
+
+        if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
         {
-            float randomZ = Random.Range(-walkPointRange, walkPointRange);
-            float randomX = Random.Range(-walkPointRange, walkPointRange);
-
-            walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
-
-            if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
-                walkPointSet = true;
+            Debug.Log("true");
+            walkPointSet = true;
         }
+    }
 
     private void OnDrawGizmosSelected()
     {

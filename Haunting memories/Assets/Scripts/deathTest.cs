@@ -31,8 +31,8 @@ public class deathTest : MonoBehaviour
     void Respawn()
     {
         JumpScare.SetActive(false);
-        enemy.transform.position = new Vector3(-6, 1, -20);
-        player.transform.position = new Vector3(0, 0, 0);
+        enemy.transform.position = new Vector3(-14.11f, -0.498f, -5.8f);
+        player.transform.position = new Vector3(-25.93f, 0f, -3.77f);
         //enemy.SetActive(true);
         player.SetActive(true);
 
