@@ -6,6 +6,7 @@ public class Switch : MonoBehaviour
 {
     public GameObject up;
     public GameObject on;
+    public GameObject off;
     public bool isOn;
     public bool isUp;
     private MainScript mainScript;
@@ -37,6 +38,7 @@ public class Switch : MonoBehaviour
             isOn = false;
         }
         on.SetActive(isOn);
+        off.SetActive(!isOn);
         up.SetActive(isUp);
         if (isOn)
         {
@@ -49,6 +51,7 @@ public class Switch : MonoBehaviour
         isUp = !isUp;
         isOn = !isOn;
         on.SetActive(isOn);
+        off.SetActive(!isOn);
         up.SetActive(isUp); 
         if (isOn)
         {
